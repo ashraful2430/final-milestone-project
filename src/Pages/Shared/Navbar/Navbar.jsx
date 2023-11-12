@@ -42,7 +42,7 @@ const Navbar = () => {
         >
             <li className="mr-5">OUR MENU</li>
         </NavLink>
-        <NavLink to={'/shop'}
+        <NavLink to={'/shop/salad'}
             className={({ isActive }) =>
                 isActive ?
                     ' bg-none text-[#EEFF25] font-bold'

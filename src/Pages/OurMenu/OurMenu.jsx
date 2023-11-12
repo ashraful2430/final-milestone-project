@@ -26,11 +26,11 @@ const OurMenu = () => {
             {/* offered menu */}
             <MenuCategory items={offered}></MenuCategory>
             {/* deserts menu */}
-            <MenuCategory items={dessert} title='DESSERTS' description='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' coverImg={desertImg}></MenuCategory>
+            <MenuCategory items={dessert} title='dessert' description='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' coverImg={desertImg}></MenuCategory>
             {/* pizza menu */}
-            <MenuCategory items={pizza} title='PIZZA' description='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' coverImg={pizzaImg}></MenuCategory>
+            <MenuCategory items={pizza} title='pizza' description='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' coverImg={pizzaImg}></MenuCategory>
             {/* salad menu */}
-            <MenuCategory items={salad} title='SALAD' description='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' coverImg={saladImg}></MenuCategory>
+            <MenuCategory items={salad} title='salad' description='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' coverImg={saladImg}></MenuCategory>
             {/* soup menu */}
             <MenuCategory items={soup} title='soup' description='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' coverImg={soupImg}></MenuCategory>
         </div>
