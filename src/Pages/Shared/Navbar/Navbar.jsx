@@ -1,7 +1,20 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { PiShoppingCartSimpleBold } from 'react-icons/pi';
+import useCart from "../../../Hooks/useCart";
 
 const Navbar = () => {
+    const { user, logout } = useContext(AuthContext);
+    const [cart] = useCart();
+
+    const handleLogout = () => {
+        logout()
+            .then(() => { })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
     const navLinks = <>
 
@@ -50,6 +63,35 @@ const Navbar = () => {
         >
             <li className="mr-5">OUR SHOP</li>
         </NavLink>
+        <NavLink to={'/dashboard/cart'}
+            className={({ isActive }) =>
+                isActive ?
+                    ' bg-none text-[#EEFF25] font-bold'
+                    : ''}
+        >
+            <li className="mr-5">
+                <button className="">
+                    <PiShoppingCartSimpleBold></PiShoppingCartSimpleBold>
+                    <div className="badge badge-secondary">+{cart.length}</div>
+                </button>
+            </li>
+        </NavLink>
+
+        {
+            user ? <>
+                <button onClick={handleLogout} className=""><li>Sign out</li></button>
+            </> :
+                <>
+                    <NavLink to={'/login'}
+                        className={({ isActive }) =>
+                            isActive ?
+                                ' bg-none text-[#EEFF25] font-bold'
+                                : ''}
+                    >
+                        <li className="mr-5">Log in</li>
+                    </NavLink>
+                </>
+        }
     </>
 
 
