@@ -106,7 +106,7 @@ const Dashboard = () => {
                   className={({ isActive }) =>
                     isActive ? " bg-none text-white font-medium" : ""
                   }
-                  to={"/dashboard/reservation"}
+                  to={"/dashboard/payment"}
                 >
                   <SlCalender />
                   Reservation
@@ -118,7 +118,7 @@ const Dashboard = () => {
                   className={({ isActive }) =>
                     isActive ? " bg-none text-white font-medium" : ""
                   }
-                  to={"/dashboard/payment"}
+                  to={"/dashboard/paymentHistory"}
                 >
                   <MdOutlinePayment />
                   Payment History

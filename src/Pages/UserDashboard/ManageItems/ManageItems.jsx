@@ -4,6 +4,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import Swal from "sweetalert2";
 import useAxios from "../../../Hooks/useAxios";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [menu, , refetch] = useMenu();
@@ -78,12 +79,14 @@ const ManageItems = () => {
                   </td>
                   <td>{item.price}$</td>
                   <th>
-                    <button
-                      onClick={() => handleUpdate(item._id)}
-                      className="btn bg-[#D1A054] text-2xl text-white"
-                    >
-                      <IoMdCheckboxOutline />
-                    </button>
+                    <Link to={`/dashboard/updateItem/${item._id}`}>
+                      <button
+                        onClick={() => handleUpdate(item._id)}
+                        className="btn bg-[#D1A054] text-2xl text-white"
+                      >
+                        <IoMdCheckboxOutline />
+                      </button>
+                    </Link>
                   </th>
                   <th>
                     <button
