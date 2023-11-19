@@ -6,10 +6,12 @@ import { MdOutlinePayment } from "react-icons/md";
 import { MdOutlineReviews } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import useAdmin from "../../Hooks/useAdmin";
+import useCart from "../../Hooks/useCart";
 
 const Dashboard = () => {
   // todo: get admin data from the database
   const [isAdmin] = useAdmin();
+  const [cart] = useCart();
   return (
     <div className="flex">
       <div className="w-64 min-h-screen p-9 bg-[#D1A054] text-black ">
@@ -132,7 +134,7 @@ const Dashboard = () => {
                   }
                   to={"/dashboard/cart"}
                 >
-                  <PiShoppingCartSimpleBold /> My cart
+                  <PiShoppingCartSimpleBold /> My cart({cart.length})
                 </NavLink>
               </li>
               <li className="">

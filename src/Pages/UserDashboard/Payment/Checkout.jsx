@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import useAxios from "../../../Hooks/useAxios";
 import useCart from "../../../Hooks/useCart";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [error, setError] = useState("");
@@ -11,17 +13,19 @@ const Checkout = () => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const axiosSecure = useAxios();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", { price: totalPrice })
-      .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/create-payment-intent", { price: totalPrice })
+        .then((res) => {
+          setClientSecret(res.data.clientSecret);
+        });
+    }
   }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (e) => {
@@ -64,6 +68,31 @@ const Checkout = () => {
       if (paymentIntent.status === "succeeded") {
         console.log("transition id", paymentIntent.id);
         setTransition(paymentIntent.id);
+
+        // now save the payment info in database
+        const payment = {
+          email: user?.email,
+          price: totalPrice,
+          date: new Date(),
+          cartIds: cart.map((item) => item._id),
+          menuIds: cart.map((item) => item.menuId),
+          transitionId: paymentIntent.id,
+          status: "Pending",
+        };
+
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("payment", res.data);
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your payment has been succeeded",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        refetch();
+        navigate("/dashboard/paymentHistory");
       }
     }
   };
