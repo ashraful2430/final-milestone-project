@@ -24,7 +24,7 @@ const Dashboard = () => {
                   className={({ isActive }) =>
                     isActive ? " bg-none text-white font-medium" : ""
                   }
-                  to={"/dashboard/userHome"}
+                  to={"/dashboard/adminHome"}
                 >
                   <IoHome />
                   Admin Home
@@ -96,7 +96,7 @@ const Dashboard = () => {
                   className={({ isActive }) =>
                     isActive ? " bg-none text-white font-medium" : ""
                   }
-                  to={"/dashboard/adminHome"}
+                  to={"/dashboard/userHome"}
                 >
                   <IoHome />
                   User Home
